@@ -1,0 +1,2 @@
+GOPATH=${PWD}/approot
+dev_appserver.py ./approot
