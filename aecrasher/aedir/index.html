@@ -1,0 +1,14 @@
+<html>
+<body>
+<script>
+  function doThing(doIt) {
+    var xhr = new XMLHttpRequest();
+    var url = "/api/crashServer" + (doIt ? "?cmd=crash" : "");
+    xhr.open('GET', url, true);
+    xhr.send(null);
+  }
+</script>
+<button onclick="doThing(false)">Don't crash</button>
+<button onclick="doThing(true)">Crash</button>
+</body>
+</html>
