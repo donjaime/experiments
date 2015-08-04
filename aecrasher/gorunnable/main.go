@@ -25,7 +25,7 @@ func GCBugHandler(w http.ResponseWriter, r *http.Request) {
 		lotsOfShit[i] = rand.Uint32()
 	}
 
-	thingThatLeaks := func() error {
+	thingThatDisappears := func() error {
 		log.Println("Thing!")
 		return nil
 	}
@@ -34,7 +34,7 @@ func GCBugHandler(w http.ResponseWriter, r *http.Request) {
 
 	for i := 0; i < 3; i++ {
 		thingThatIsSupposedToPin = func() {
-			thingThatLeaks()
+			thingThatDisappears()
 		}
 	}
 

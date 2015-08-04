@@ -28,7 +28,7 @@ func GCBugHandler(w http.ResponseWriter, r *http.Request) {
 		lotsOfShit[i] = rand.Uint32()
 	}
 
-	thingThatLeaks := func() error {
+	thingThatDisappears := func() error {
 		ctx.Debugf("Thing!")
 		return nil
 	}
@@ -37,12 +37,12 @@ func GCBugHandler(w http.ResponseWriter, r *http.Request) {
 
 	for i := 0; i < 3; i++ {
 		thingThatIsSupposedToPin = func() {
-			thingThatLeaks()
+			thingThatDisappears()
 		}
 
-		// NOTE THAT IF WE LOG thingThatLeaks IT PINS IT INTO EXISTENCE, AND THE CRASHER GOES AWAY.
+		// NOTE THAT IF WE LOG thingThatDisappears IT PINS IT INTO EXISTENCE, AND THE CRASHER GOES AWAY.
 		// Uncomment to stop the crash.
-		// ctx.Debugf("%p", thingThatLeaks)
+		// ctx.Debugf("%p", thingThatDisappears)
 	}
 
 	ctx.Debugf("%d", lotsOfShit[23]) // pin lots of shit until we get here
