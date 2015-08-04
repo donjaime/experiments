@@ -39,6 +39,10 @@ func GCBugHandler(w http.ResponseWriter, r *http.Request) {
 		thingThatIsSupposedToPin = func() {
 			thingThatLeaks()
 		}
+
+		// NOTE THAT IF WE LOG thingThatLeaks IT PINS IT INTO EXISTENCE, AND THE CRASHER GOES AWAY.
+		// Uncomment to stop the crash.
+		// ctx.Debugf("%p", thingThatLeaks)
 	}
 
 	ctx.Debugf("%d", lotsOfShit[23]) // pin lots of shit until we get here
