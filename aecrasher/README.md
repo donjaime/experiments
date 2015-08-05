@@ -1,4 +1,4 @@
-# Make AppEngine Segfault
+# Make AppEngine Go Runtime Crash
 
 GC and/or compiler bug to do with pinning a reference to a closure via another
 closure within a for loop.
