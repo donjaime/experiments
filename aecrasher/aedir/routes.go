@@ -22,10 +22,10 @@ func GCBugHandler(w http.ResponseWriter, r *http.Request) {
 
 	ctx := appengine.NewContext(r)
 
-	// Allocate lots of shit.
-	lotsOfShit := make([]uint32, 10000000) // 40 MB
-	for i := 0; i < len(lotsOfShit); i++ {
-		lotsOfShit[i] = rand.Uint32()
+	// Allocate lots of stuff.
+	lotsOfStuff := make([]uint32, 10000000) // 40 MB
+	for i := 0; i < len(lotsOfStuff); i++ {
+		lotsOfStuff[i] = rand.Uint32()
 	}
 
 	thingThatDisappears := func() error {
@@ -45,7 +45,7 @@ func GCBugHandler(w http.ResponseWriter, r *http.Request) {
 		// ctx.Debugf("%p", thingThatDisappears)
 	}
 
-	ctx.Debugf("%d", lotsOfShit[23]) // pin lots of shit until we get here
+	ctx.Debugf("%d", lotsOfStuff[23]) // pin lots of stuff until we get here
 	runtime.GC()
 
 	if thingThatIsSupposedToPin != nil {
