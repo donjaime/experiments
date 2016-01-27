@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .redSidebar {
+    position: absolute;
+    right: 0;top: 0;bottom: 0;width: 384px;
+    background-color: red;
+  }
+</style>
+</head>  
+<body>
+THERE SHOULD BE A BIG RED SIDEBAR TO THE RIGHT ----><br/>
+Inspect and see HTML comments for details.
+
+<!--
+ If you change anything in this DOM subtree, you see the red sidebar (good), but the GPU layer is positioned
+ incorrectly. It shows up slammed to the left, when it ought to be slammed to the right of the body.
+ Only position absolute or relative triggers the issue. Must also have z-index
+-->
+<div style="z-index: 1;position: relative;">
+  <!-- Needs to have non-zero height. Width seems irrelevant. Padding also works here. -->
+  <div style="height: 1px;"></div>
+</div>
+
+<!-- Change any styles below this comment and the problem "goes away" -->
+<!-- 
+This IFrame has a simple pulsing dot with a CSS animation. It seems integral to making this break.
+IFrame sandboxing, or moving this cross domain doesn't help. 
+-->
+<iframe sandbox="allow-same-origin" 
+        style="transform: scale(1, 1) translate(0px, 0px);" src="iframe-contents.html"></iframe>
+
+<!-- 
+A negative non-integral left (or margin-left) is required here. As well as position absolute. 
+This element must be AFTER the IFrame above.
+-->  
+<div style="left: -5.23658e+10px;position: absolute;"></div>
+
+<!-- 
+This should be visible. But isn't. 
+Looking at the layers view, this doesn't even get a GPU layer. 
+Unless you poke out any of the inline styles above.
+-->
+<div class="redSidebar"></div>
+</body>
+</body>
+</html>

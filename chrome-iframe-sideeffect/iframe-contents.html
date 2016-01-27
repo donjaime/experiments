@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @keyframes pulse {
+        0%, 80%, 100% {
+          -webkit-transform: scale(0.8);
+          opacity: 0;
+        }
+        40% {
+          -webkit-transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .pulsingDot {
+        display: inline-block;
+        margin: 0 1.5px;
+        width: 8px;
+        height: 8px;
+        background: #999;
+        border-radius: 100%;
+        animation-fill-mode: both;
+        animation: pulse 1.4s infinite ease-in-out; }
+    </style>
+  </head>
+  <body>
+    <div class="pulsingDot"></div>
+  </body>
+</html>
