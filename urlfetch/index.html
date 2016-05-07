@@ -1,0 +1,15 @@
+<html>
+<body>
+<script>
+  function getGcsFile(file) {
+    var xhr = new XMLHttpRequest();
+    var url = "/api/fetchFile?" + "gcsFile=" + file;
+    xhr.open('GET', url, true);
+    xhr.send(null);
+  }
+</script>
+Open web inspector and see HTTP status code
+<input type="text" value="mn-load-public/jaime/giant.txt" id="file" style="width: 500px" /><br/>
+<button onclick="getGcsFile(document.getElementById('file').value)">GetFile</button>
+</body>
+</html>

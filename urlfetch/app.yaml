@@ -1,0 +1,15 @@
+api_version: go1
+application: jaimeyap-tests
+handlers:
+
+- script: _go_app
+  secure: optional
+  url: /api/.*
+
+- url: /
+  secure: optional
+  static_files: index.html
+  upload: index.html
+
+runtime: go
+version: 1
